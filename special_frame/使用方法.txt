@@ -1,0 +1,48 @@
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import special_project.special_frame;
+public class test {
+	
+	public static void main(String[] args) {
+		//界面初始化方法   
+		special_frame sp = new special_frame();//全部靠jar包内部的初始化
+		sp.made_frame();  //返回值为JPanel的对象值
+		special_frame sq = new special_frame(0,0,0);//只是rgb颜色重写   背景色重写
+		sq.made_frame();
+		special_frame sc = new special_frame(400,400);//只是宽高重写
+		sc.made_frame();
+		special_frame sz = new special_frame(400,400,0,0,0);//只是宽,高,r,g,b重写
+		sz.made_frame();
+		special_frame sn = new special_frame(360,331,176,224,230,true,false,new YellowClickAction());//全部重写
+		//顺序依次是 宽 高 R G B 绿色按钮是否显示 黄色按钮是否显示 黄色按钮事件
+		sn.made_frame();
+		//各类方法的调用：
+		sp.set_bac_RGB(2, 25, 86);//单独  设置背景色
+		sp.set_button_visible(true, false);//单独设置  绿色按钮是否显示 黄色按钮是否显示
+		sp.set_yellow_listener(new YellowClickAction()); //单独添加 黄色按钮响应事件
+		sp.setHeight(255);//单独设置高度
+		sp.setWidth(255);//单独设置宽度
+		//备注：绿色按钮默认为最小化按钮，黄色按钮可添加事件
+		
+		//以下是关于返回值的使用
+		special_frame sv = new special_frame();//全部靠jar包内部的初始化
+		JPanel a = sv.made_frame();  //返回值为JPanel的对象值
+		JButton b = new JButton();
+		b.setBounds(100, 100, 100, 100);
+		b.setText("测试案例");
+		a.add(b);
+		//以上为关于如何在界面添加响应控件，默认setabsolute为null
+	}
+}
+class YellowClickAction implements ActionListener{
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
+		JOptionPane.showMessageDialog(null, "目前我只是装饰作用");
+	}
+}//黄色按钮
